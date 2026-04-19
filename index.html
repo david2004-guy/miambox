@@ -1,1 +1,50 @@
-<h1>MIAMBOX TEST OK</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIAMBOX - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff4d4d">
+</head>
+
+<body>
+
+<header>
+
+    <div class="topbar">
+        <img src="Miambox_Abonnement.png" class="logo">
+
+        <nav>
+            <a href="Untitled-1.html">Accueil</a>
+            <a href="abonnement.html">Abonnements</a>
+            <a href="menu.html">Menus</a>
+        </nav>
+
+    </div>
+
+    <div class="hero">
+        <img src="Miambox_Abonnement.png" class="mascotte">
+
+        <h1>MIAMBOX</h1>
+        <p>Mange bien chaque jour sans stress 🍱</p>
+    </div>
+
+</header>
+
+<main style="padding: 30px;">
+
+    <h2>Bienvenue sur MIAMBOX 👋</h2>
+
+    <p>
+        Ton service d’abonnement repas simple, rapide et économique.
+    </p>
+</main>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+</script>
+</body>
+</html>
