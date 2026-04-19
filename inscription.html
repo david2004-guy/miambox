@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Inscription MIAMBOX</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+.card {
+    background: white;
+    width: 320px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    padding: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Inscription 🍱</h2>
+
+<input type="text" id="nom" placeholder="Nom">
+<input type="text" id="prenom" placeholder="Prénom">
+<input type="text" id="phone" placeholder="Numéro de téléphone">
+
+<p class="error" id="error"></p>
+
+<button onclick="valider()">Continuer</button>
+
+</div>
+<script>
+function valider() {
+
+    let nom = document.getElementById("nom").value.trim();
+    let prenom = document.getElementById("prenom").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+
+    if (nom === "" || prenom === "" || phone === "") {
+        alert("Tous les champs sont obligatoires !");
+        return;
+    }
+
+    let plan = localStorage.getItem("plan");
+    let type = localStorage.getItem("type");
+
+    let startDate = new Date();
+    let endDate = new Date(startDate);
+
+    // durée selon le type choisi
+    if (type === "journalier") {
+        endDate.setDate(startDate.getDate() + 1);
+    }
+
+    else if (type === "hebdomadaire") {
+        endDate.setDate(startDate.getDate() + 7);
+    }
+
+    else if (type === "mensuel") {
+        endDate.setMonth(startDate.getMonth() + 1);
+    }
+
+    let client = {
+        nom: nom,
+        prenom: prenom,
+        phone: phone,
+        abonnement: plan,
+        type: type,
+        debut: startDate.toLocaleDateString(),
+        fin: endDate.toLocaleDateString()
+    };
+
+    let clients = JSON.parse(localStorage.getItem("clients")) || [];
+    clients.push(client);
+
+    localStorage.setItem("clients", JSON.stringify(clients));
+
+    window.location.href = "menu.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Admin MIAMBOX</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+th {
+    background: #ff4d4d;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📊 Historique des abonnements</h1>
+
+<table>
+    <thead>
+        <tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Téléphone</th>
+    <th>Abonnement</th>
+    <th>Type</th>
+    <th>Date début</th>
+    <th>Date fin</th>
+    <th>Statut</th>
+</tr>
+    </thead>
+
+    <tbody id="data"></tbody>
+</table>
+
+<tbody id="data"></tbody>
+
+<script>
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+let today = new Date();
+
+clients.forEach(c => {
+
+    clients.forEach(c => {
+
+    let parts = c.fin.split("/");
+    let endDate = new Date(parts[2], parts[1] - 1, parts[0]);
+
+    let diff = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+
+    let statut = "";
+
+    if (diff < 0) {
+        statut = "❌ Expiré";
+    }
+    else if (diff <= 3) {
+        statut = "⚠️ Bientôt terminé";
+    }
+    else {
+        statut = "✅ Actif";
+    }
+
+    table.innerHTML += `
+        <tr>
+            <td>${c.nom}</td>
+            <td>${c.prenom}</td>
+            <td>${c.phone}</td>
+            <td>${c.abonnement}</td>
+            <td>${c.type}</td>
+            <td>${c.debut}</td>
+            <td>${c.fin}</td>
+            <td>${statut}</td>
+        </tr>
+    `;
+});
+});
+</script>
+
+</body>
+</html>

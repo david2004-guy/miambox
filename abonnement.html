@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Abonnements - MIAMBOX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="topbar">
+        <img src="Miambox_Abonnement.png" class="logo">
+    </div>
+</header>
+
+<h2>Nos abonnements</h2>
+
+<select id="plan">
+    <option value="basic">Basic</option>
+    <option value="standard">Standard</option>
+    <option value="premium">Premium</option>
+</select>
+
+<select id="type">
+    <option value="journalier">Journalier</option>
+    <option value="hebdomadaire">Hebdomadaire</option>
+    <option value="mensuel">Mensuel</option>
+</select>
+
+<button onclick="go()">Continuer</button>
+
+<script>
+function go() {
+    let plan = document.getElementById("plan").value;
+    let type = document.getElementById("type").value;
+
+    localStorage.setItem("plan", plan);
+    localStorage.setItem("type", type);
+
+    window.location.href = "inscription.html";
+}
+</script>
+</body>
+</html>

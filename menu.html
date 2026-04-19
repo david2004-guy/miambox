@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Menus MIAMBOX</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+.card {
+    background: white;
+    width: 340px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+}
+
+select {
+    padding: 10px;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.menu-box {
+    margin-top: 15px;
+}
+
+.item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Menus du jour 🍱</h1>
+
+<div class="card">
+
+<select id="plan" onchange="loadMenu()">
+    <option value="">Choisir abonnement</option>
+    <option value="basic">Basic</option>
+    <option value="standard">Standard</option>
+    <option value="premium">Premium</option>
+</select>
+
+<div id="menu" class="menu-box"></div>
+
+</div>
+
+<script>
+function loadMenu() {
+
+    let plan = document.getElementById("plan").value;
+    let menu = document.getElementById("menu");
+
+    menu.innerHTML = "";
+
+    if (plan === "basic") {
+
+        menu.innerHTML = `
+        <div class="item">
+            <img src="riz.jpg">
+            <p>Riz + sauce</p>
+        </div>
+
+        <div class="item">
+            <img src="spaghetti.jpg">
+            <p>Spaghetti simple</p>
+        </div>
+
+        <p>🥤 Eau uniquement</p>
+        <p>🍰 Pas de dessert</p>
+        `;
+    }
+
+    else if (plan === "standard") {
+
+        menu.innerHTML = `
+        <div class="item">
+            <img src="poulet.jpg">
+            <p>Riz + poulet</p>
+        </div>
+
+        <div class="item">
+            <img src="attiéké.jpg">
+            <p>Attiéké + poisson</p>
+        </div>
+
+        <p>🥤 Jus ou soda inclus</p>
+        <p>🍰 Dessert simple possible</p>
+        `;
+    }
+
+    else if (plan === "premium") {
+
+        menu.innerHTML = `
+        <div class="item">
+            <img src="riz_poulet.jpg">
+            <p>Riz + poulet braisé</p>
+        </div>
+
+        <div class="item">
+            <img src="poisson.jpg">
+            <p>Poisson grillé</p>
+        </div>
+
+        <div class="item">
+            <img src="burger.jpg">
+            <p>Burger maison</p>
+        </div>
+
+        <p>🥤 Boisson premium incluse</p>
+        <p>🍰 Dessert inclus</p>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
